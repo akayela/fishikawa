@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.todo-app-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.todo-nav-container {
+    background-color: aliceblue;
+    height: 5vh;
+    width: 100vw;
+}
+
+.todo-content-container {
+    height: 95vh;
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    grid-template-rows: 1fr;
+}
+
+.todo-form-container {
+    background-color: coral;
+}
+
+.todo-table-container {
+    background-color:aqua;
+}

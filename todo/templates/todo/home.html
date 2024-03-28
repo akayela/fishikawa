@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/htmx.org@1.9.11" 
+    integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0"
+    crossorigin="anonymous">
+    </script>
+        <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+<div class="todo-app-container">
+
+
+        <div class="todo-nav-container">
+            <div class="nav-links-container">
+                <a>Home</a>
+                <a>Features</a>
+                <a>Pricing</a>
+            </div>
+        </div>
+
+<div class="todo-content-container">
+
+<!--Start of form-->
+
+
+            <div class="todo-form-container">
+                <h3>Assigment Form</h3>
+                        <form>
+                          <div class="assigment-input-container">
+                              <label for="assignment">Assignment</label>
+                              <div>
+                                <input type="text" id="assignment" placeholder="Enter Task Here">
+                              </div>
+                          </div>
+                          <div class="assignee-input-container">
+                              <label for="assignee">Assignee</label>
+                              <div>
+                                <input type="text" id="assignee" placeholder="Enter Assignee Name">
+                              </div>
+                          <div class="due_date-input-container">
+                              <label for="due_date">Due Date</label>
+                              <div>
+                                <input type="date" id="due_date" placeholder="Enter Due Date">
+                              </div>
+                          </div>
+                        </form>
+            </div>
+            </div>
+
+
+<!--End of form-->
+
+
+
+<!--Start of table-->
+
+
+          <div class="todo-table-container">
+            <table>
+                <thead>
+                    <tr>
+                      <th>DUE</th>
+                      <th>TASK</th>
+                      <th>ASSIGNEE</th>
+                      <th>STATUS</th>
+                      <th>PRIMARY ANALYSIS</th>
+                      <th>ROOT CAUSE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for todo in queryset %}
+                    <tr>
+                      <th>{{ todo.due }}</th>
+                      <td>{{ todo.assignment }}</td>
+                      <td>{{ todo.assignee }}</td>
+                      {% if todo.status == "In Progress" %}
+                      <td>{{ todo.status }}</td>
+                      {% elif todo.status == "Pending" %}
+                      <td>{{ todo.status }}</td>
+                      {% elif todo.status == "Delayed"%}
+                      <td>{{ todo.status }}</td>
+                      {% elif todo.status == "Incomplete" %}
+                      <td>{{ todo.status }}</td>
+                      {% elif todo.status == "Cancelled" %}
+                      <td>{{ todo.status }}</td>
+                    {% else %}
+                      <td>{{ todo.status }}</td>
+                      {% endif %}
+                      {% if todo.status == "Delayed" or todo.status == "Incomplete" or todo.status == "Cancelled" %}
+                   <td>{{ todo.primary_cause }}</td>
+                  <td>{{ todo.root_cause }}</td>
+                    {% endif %}
+                    {% endfor %}
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+          </div>
+
+
+          <!--End of table-->
+</div>
+</body>
+</html>
